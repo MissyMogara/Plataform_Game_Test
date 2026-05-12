@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://qfc1rh43m8qt"]
+
+[ext_resource type="Texture2D" uid="uid://bk0ddocce81dd" path="res://textures/Rope001_1K-JPG_Color.jpg" id="1_x8aj7"]
+
+[resource]
+albedo_texture = ExtResource("1_x8aj7")
+metallic = 1.0
+metallic_texture_channel = 4
+roughness_texture_channel = 4
+normal_enabled = true
+heightmap_enabled = true
+heightmap_scale = 1.0

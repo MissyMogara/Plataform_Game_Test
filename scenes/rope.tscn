@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bm1pnxtr1m7kq"]
+
+[ext_resource type="Material" uid="uid://qfc1rh43m8qt" path="res://materials/Rope001_1K-JPG.tres" id="1_ghbyf"]
+[ext_resource type="Script" uid="uid://cvbt20x1qh0yt" path="res://scripts/rope.gd" id="1_vlfmi"]
+[ext_resource type="PackedScene" uid="uid://bf5el61mf33ik" path="res://assets/grappling_hook/Hook.glb" id="2_vlfmi"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wmsjs"]
+material = ExtResource("1_ghbyf")
+top_radius = 0.1
+bottom_radius = 0.1
+
+[node name="RopeWithHook" type="Node3D" unique_id=251313165]
+script = ExtResource("1_vlfmi")
+
+[node name="Hook2" parent="." unique_id=2112266519 instance=ExtResource("2_vlfmi")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, -2.1988761)
+
+[node name="Rope" type="Node3D" parent="." unique_id=961597558]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rope" unique_id=1719998261]
+transform = Transform3D(-1, 1.509958e-07, -6.600236e-15, 0, -4.371139e-08, -1, -1.509958e-07, -1, 4.371139e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_wmsjs")
