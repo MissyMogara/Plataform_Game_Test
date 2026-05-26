@@ -15,9 +15,19 @@ sky = SubResource("Sky_w8frs")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="SphereMesh" id="SphereMesh_2q6dc"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_ppgk2"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_2q6dc"]
+[sub_resource type="BoxMesh" id="BoxMesh_2q6dc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2q6dc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7c3h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8frs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mx8sn"]
 
 [node name="Level" type="Node3D" unique_id=1572995678]
 
@@ -28,20 +38,54 @@ environment = SubResource("Environment_mx8sn")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=124201826]
+[node name="CharacterBody3D" parent="." unique_id=1672272667 instance=ExtResource("1_2q6dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.591351, 0)
+
+[node name="Hook_Point1" type="CSGMesh3D" parent="." unique_id=1704194650 groups=["hookable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46974707, 6.46679, 34.421154)
+use_collision = true
+mesh = SubResource("SphereMesh_2q6dc")
+
+[node name="Hook_Point2" type="CSGMesh3D" parent="." unique_id=1596370095 groups=["hookable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5011406, -3.6959562)
+use_collision = true
+mesh = SubResource("SphereMesh_2q6dc")
+
+[node name="Terrain" type="CSGCombiner3D" parent="." unique_id=1577584844]
+use_collision = true
+
+[node name="Floor" type="CSGMesh3D" parent="Terrain" unique_id=124201826]
 transform = Transform3D(50, 0, 0, 0, 0.4, 0, 0, 0, 50, 0, 0, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_ppgk2")
 
-[node name="CharacterBody3D" parent="." unique_id=1672272667 instance=ExtResource("1_2q6dc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.591351, 0)
-
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="." unique_id=1704194650 groups=["hookable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.130253, 6.46679, -9.578846)
+[node name="Floor2" type="CSGMesh3D" parent="Terrain" unique_id=1989366656]
+transform = Transform3D(100, 0, 0, 0, 0.4, 0, 0, 0, 115.00001, 0, 0, 103.2)
 use_collision = true
-mesh = SubResource("SphereMesh_2q6dc")
+mesh = SubResource("BoxMesh_ppgk2")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="." unique_id=1596370095 groups=["hookable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5011406, -3.6959562)
-use_collision = true
-mesh = SubResource("SphereMesh_2q6dc")
+[node name="Door" type="CSGMesh3D" parent="Terrain" unique_id=1497452611]
+transform = Transform3D(21.168003, 0, 0, 0, 11.16, 0, 0, 0, 1, 1.5, 5.7095327, 56.3)
+mesh = SubResource("BoxMesh_2q6dc")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Door" unique_id=1286330108]
+transform = Transform3D(0.60000014, 0, 0, 0, 0.40000004, 0, 0, 0, 11.913002, 0, -0.2956993, 0.20000076)
+operation = 2
+mesh = SubResource("CapsuleMesh_2q6dc")
+
+[node name="Tower" type="CSGMesh3D" parent="Terrain" unique_id=50498558]
+transform = Transform3D(28.939684, 0, 0, 0, 39.611526, 0, 0, 0, 27.26, 0, 19.5, 98.3)
+mesh = SubResource("BoxMesh_w7c3h")
+
+[node name="Rampa" type="CSGMesh3D" parent="Terrain/Tower" unique_id=1532856253]
+transform = Transform3D(1.0000004, 0, 0, 0, 0.30000016, 0, 0, 0, 0.7000004, 0, -0.34838355, -0.6309612)
+mesh = SubResource("BoxMesh_w8frs")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower/Rampa" unique_id=906590576]
+transform = Transform3D(-0.4954737, 2.2700655, 0, -0.5904821, -1.9048105, 0, 0, 0, 1.000002, 0, 0.41738665, -0.10638332)
+operation = 2
+mesh = SubResource("BoxMesh_w8frs")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower" unique_id=1892171521]
+transform = Transform3D(0.46800125, 0, 0, 0, 0.28500143, 0, 0, 0, 0.46080235, -0.73098344, -0.39130223, -0.74746776)
+mesh = SubResource("BoxMesh_mx8sn")

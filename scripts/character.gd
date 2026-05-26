@@ -17,10 +17,12 @@ extends CharacterBody3D
 @onready var _camera_pivot: Node3D = %Pivot
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Miqotilla
+@onready var coyote_timer: Timer = $CoyoteTimer
 
 var _camera_imput_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
 var _gravity := -30.0
+var was_on_floor: bool = false
 
 # This prevent player for moving camera outside the game
 func _unhandled_input(event: InputEvent) -> void:
@@ -74,12 +76,25 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerpf(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerpf(velocity.z, 0.0, deceleration * delta)
 	
-	var y_velocity := velocity.y
-	velocity.y = 0
-	#velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
-	velocity.y = y_velocity + _gravity * delta
 	
-	var is_starting_jump: bool = Input.is_action_just_pressed("space_bar") and (is_on_floor() or grapple_controller.launched)
+	
+	if is_on_floor():
+		was_on_floor = true
+	else:
+		if was_on_floor:
+			coyote_timer.start()
+			was_on_floor = false
+	
+	if (!is_on_floor() and coyote_timer.is_stopped()):
+		var y_velocity := velocity.y
+		velocity.y = 0
+		velocity.y = y_velocity + _gravity * delta
+	
+	print(!is_on_floor())
+	print(coyote_timer.time_left)
+
+	
+	var is_starting_jump: bool = Input.is_action_just_pressed("space_bar") and ((is_on_floor() or !coyote_timer.is_stopped()) or grapple_controller.launched)
 	if is_starting_jump:
 		velocity.y +=  jump_impulse
 		

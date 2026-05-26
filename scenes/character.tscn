@@ -161,6 +161,12 @@ bind/38/name = &"Skirt.004.R"
 bind/38/bone = -1
 bind/38/pose = Transform3D(0.98156005, -0.19038458, -0.017125651, -0.17554402, -0.86232316, -0.47495592, 0.07565642, 0.4692043, -0.8798429, 2.5789642, 5.802772, -5.3390512)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5ia6"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("3_0lw5n")
+disable_receive_shadows = true
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ktla"]
 _data = {
 &"jump": ExtResource("4_2cgup"),
@@ -476,6 +482,7 @@ bones/38/scale = Vector3(1.0000001, 1, 1.0000001)
 mesh = SubResource("ArrayMesh_tubqg")
 skin = SubResource("Skin_e2qai")
 skeleton = NodePath("..")
+surface_material_override/0 = SubResource("StandardMaterial3D_a5ia6")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Miqotilla/Armature/Skeleton3D" unique_id=1556654837]
 transform = Transform3D(-0.39236546, -0.9198096, -1.5280175e-07, 0.9198095, -0.39236543, 1.6010765e-07, -2.0722268e-07, -7.7727776e-08, 0.99999994, -4.2367167, 6.2080784, 5.323603e-07)
@@ -496,6 +503,10 @@ shape = SubResource("SphereShape3D_2cgup")
 
 [node name="GrappleController" type="Node" parent="." unique_id=1628700968]
 script = ExtResource("8_a5ia6")
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=167045373]
+wait_time = 0.15
+one_shot = true
 
 [connection signal="body_entered" from="GrapplingHookArea" to="GrappleController" method="_on_body_entered"]
 [connection signal="body_exited" from="GrapplingHookArea" to="GrappleController" method="_on_body_exited"]
