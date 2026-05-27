@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qc1r3skgkjyi"]
 
 [ext_resource type="PackedScene" uid="uid://bhiwmuyo16iue" path="res://scenes/character.tscn" id="1_2q6dc"]
+[ext_resource type="PackedScene" uid="uid://dstsef1h775fv" path="res://scenes/plaform_node.tscn" id="2_w7c3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -28,6 +29,20 @@ glow_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_w8frs"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_mx8sn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2r41h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_klq6b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b121j"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8c41q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_olg7q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_t1rx8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8iemx"]
 
 [node name="Level" type="Node3D" unique_id=1572995678]
 
@@ -60,7 +75,7 @@ use_collision = true
 mesh = SubResource("BoxMesh_ppgk2")
 
 [node name="Floor2" type="CSGMesh3D" parent="Terrain" unique_id=1989366656]
-transform = Transform3D(100, 0, 0, 0, 0.4, 0, 0, 0, 115.00001, 0, 0, 103.2)
+transform = Transform3D(100, 0, 0, 0, 0.4, 0, 0, 0, 207.00002, 0, 0, 148.7)
 use_collision = true
 mesh = SubResource("BoxMesh_ppgk2")
 
@@ -73,19 +88,57 @@ transform = Transform3D(0.60000014, 0, 0, 0, 0.40000004, 0, 0, 0, 11.913002, 0, 
 operation = 2
 mesh = SubResource("CapsuleMesh_2q6dc")
 
-[node name="Tower" type="CSGMesh3D" parent="Terrain" unique_id=50498558]
+[node name="Tower1" type="CSGMesh3D" parent="Terrain" unique_id=50498558]
 transform = Transform3D(28.939684, 0, 0, 0, 39.611526, 0, 0, 0, 27.26, 0, 19.5, 98.3)
 mesh = SubResource("BoxMesh_w7c3h")
 
-[node name="Rampa" type="CSGMesh3D" parent="Terrain/Tower" unique_id=1532856253]
+[node name="Rampa" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=1532856253]
 transform = Transform3D(1.0000004, 0, 0, 0, 0.30000016, 0, 0, 0, 0.7000004, 0, -0.34838355, -0.6309612)
 mesh = SubResource("BoxMesh_w8frs")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower/Rampa" unique_id=906590576]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower1/Rampa" unique_id=906590576]
 transform = Transform3D(-0.4954737, 2.2700655, 0, -0.5904821, -1.9048105, 0, 0, 0, 1.000002, 0, 0.41738665, -0.10638332)
 operation = 2
 mesh = SubResource("BoxMesh_w8frs")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower" unique_id=1892171521]
-transform = Transform3D(0.46800125, 0, 0, 0, 0.28500143, 0, 0, 0, 0.46080235, -0.73098344, -0.39130223, -0.74746776)
+[node name="Plataforma" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=1892171521]
+transform = Transform3D(0.46800137, 0, 0, 0, 0.2850016, 0, 0, 0, 0.50688285, -0.7344392, -0.39130247, -0.72912574)
 mesh = SubResource("BoxMesh_mx8sn")
+
+[node name="Rampa2" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=1701566854]
+transform = Transform3D(0.48000038, 0, 0, 0, 0.5500007, 0, 0, 0, 1.0000012, -0.72219217, -0.20953518, 0)
+mesh = SubResource("BoxMesh_2r41h")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower1/Rampa2" unique_id=1355340188]
+transform = Transform3D(1, 0, 0, 0, 0.49883065, 0.85, 0, -0.28800005, 1.4722433, 0, 0.5324432, 0)
+operation = 2
+mesh = SubResource("BoxMesh_klq6b")
+
+[node name="Plataforma2" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=1043101514]
+transform = Transform3D(0.46126774, 0, 0, 0, 0.6209549, 0, 0, 0, 0.5138618, -0.7291564, -0.25289726, 0.7538247)
+mesh = SubResource("BoxMesh_mx8sn")
+
+[node name="Rampa3" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=299647440]
+transform = Transform3D(1.0000004, 0, 0, 0, 1.0000005, 0, 0, 0, 0.70000035, 0, 0, 0.65297174)
+mesh = SubResource("BoxMesh_b121j")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower1/Rampa3" unique_id=1462509142]
+transform = Transform3D(1.4471267, -0.17101006, 0, 0.52671105, 0.4698463, 0, 0, 0, 1, 0, 0.50490344, 0)
+operation = 2
+mesh = SubResource("BoxMesh_8c41q")
+
+[node name="Plataforma3" type="CSGMesh3D" parent="Terrain/Tower1" unique_id=2105011441]
+transform = Transform3D(0.6300005, 0, 0, 0, 1.000001, 0, 0, 0, 1.5000014, 0.8120344, 0, 0.24211311)
+mesh = SubResource("BoxMesh_olg7q")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain/Tower1/Plataforma3" unique_id=1270620306]
+transform = Transform3D(0.9848074, -0.03646612, 0, 0.17364809, 0.2068096, 0, 0, 0, 0.3563999, -0.032909155, 0.6084081, 0.34971762)
+operation = 2
+mesh = SubResource("BoxMesh_t1rx8")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain" unique_id=259247635]
+transform = Transform3D(30, 0, 0, 0, 40.095, 0, 0, 0, 30.780003, 0, 20.2, 200.8)
+mesh = SubResource("BoxMesh_8iemx")
+
+[node name="Plaform_Node" parent="." unique_id=584601201 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.800003, 183.50002)
