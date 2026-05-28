@@ -90,10 +90,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		velocity.y = y_velocity + _gravity * delta
 	
-	print(!is_on_floor())
-	print(coyote_timer.time_left)
-
-	
 	var is_starting_jump: bool = Input.is_action_just_pressed("space_bar") and ((is_on_floor() or !coyote_timer.is_stopped()) or grapple_controller.launched)
 	if is_starting_jump:
 		velocity.y +=  jump_impulse

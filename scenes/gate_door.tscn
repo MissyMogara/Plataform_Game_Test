@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bu18lid064l1m"]
+
+[ext_resource type="Script" uid="uid://bastcxw0xu64g" path="res://scenes/gate_door.gd" id="1_yk55b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ceid"]
+albedo_color = Color(0.11764706, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8tsgn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yk55b"]
+size = Vector3(13.2, 7.2000003, 0.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ceid"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yk55b"]
+
+[node name="Gate_Door" type="Node3D" unique_id=1892966898]
+script = ExtResource("1_yk55b")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=1218745738]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, -2.2, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D" unique_id=1850334377]
+transform = Transform3D(13.2, 0, 0, 0, 7.252739, 0, 0, 0, 0.44999984, 0, -0.099999905, 8.742262e-09)
+material_override = SubResource("StandardMaterial3D_7ceid")
+mesh = SubResource("BoxMesh_8tsgn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=2041591619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-07, -0.10000038, 2.364331e-08)
+shape = SubResource("BoxShape3D_yk55b")
+
+[node name="Door" type="CSGMesh3D" parent="." unique_id=1957016618]
+transform = Transform3D(21.168003, 0, 0, 0, 11.16, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_7ceid")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Door" unique_id=341518407]
+transform = Transform3D(0.60000014, 0, 0, 0, 0.40000004, 0, 0, 0, 11.913002, 0, -0.2956993, 0.20000076)
+operation = 2
+mesh = SubResource("CapsuleMesh_yk55b")

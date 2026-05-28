@@ -23,13 +23,11 @@ func _on_body_entered(body: Node3D) -> void:
 		target = body.global_position
 		var query = PhysicsRayQueryParameters3D.create(char_origin, target)
 		target_collision = direct_state.intersect_ray(query)
-		print(target_collision)
 		
 		
 
 func _on_body_exited(body: Node3D) -> void:
 	if body.is_in_group("hookable"):
-		print("He salido")
 		available = false
 
 func _physics_process(delta: float) -> void:
@@ -85,8 +83,6 @@ func update_rope():
 	
 	
 	var dist = player.global_position.distance_to(target)
-	print(dist)
-	print(target)
 	grappling_hook.look_at_and_scale(target, dist)
 	
 	

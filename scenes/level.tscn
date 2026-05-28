@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qc1r3skgkjyi"]
 
 [ext_resource type="PackedScene" uid="uid://bhiwmuyo16iue" path="res://scenes/character.tscn" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://ci30d3tanuo71" path="res://scenes/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://dstsef1h775fv" path="res://scenes/plaform_node.tscn" id="2_w7c3h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
@@ -45,6 +46,7 @@ glow_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_8iemx"]
 
 [node name="Level" type="Node3D" unique_id=1572995678]
+script = ExtResource("1_w8frs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1300993309]
 environment = SubResource("Environment_mx8sn")
@@ -62,7 +64,7 @@ use_collision = true
 mesh = SubResource("SphereMesh_2q6dc")
 
 [node name="Hook_Point2" type="CSGMesh3D" parent="." unique_id=1596370095 groups=["hookable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5011406, -3.6959562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 49.501, 148.65)
 use_collision = true
 mesh = SubResource("SphereMesh_2q6dc")
 
@@ -137,8 +139,17 @@ operation = 2
 mesh = SubResource("BoxMesh_t1rx8")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Terrain" unique_id=259247635]
-transform = Transform3D(30, 0, 0, 0, 40.095, 0, 0, 0, 30.780003, 0, 20.2, 200.8)
+transform = Transform3D(30, 0, 0, 0, 39.69405, 0, 0, 0, 30.780003, 0, 19.500002, 200.8)
 mesh = SubResource("BoxMesh_8iemx")
 
 [node name="Plaform_Node" parent="." unique_id=584601201 instance=ExtResource("2_w7c3h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38.800003, 183.50002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 38.800003, 113.80001)
+offset = Vector3(0, 0, 34.85)
+duration = 10.0
+pause = 3.0
+
+[node name="Plaform_Node2" parent="." unique_id=1647887181 instance=ExtResource("2_w7c3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 38.8, 183.49998)
+offset = Vector3(0, 0, -34.85)
+duration = 10.0
+pause = 3.0

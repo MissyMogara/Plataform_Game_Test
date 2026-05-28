@@ -14,5 +14,4 @@ func hide_rope() -> void:
 	rope.visible = false
 	
 func look_at_and_scale(target: Vector3, distance: float ):
-	#rope.look_at(target)
 	rope.scale_rope(target)
