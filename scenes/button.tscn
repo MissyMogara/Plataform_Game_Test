@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://scnnn4jvuvtm"]
+
+[ext_resource type="Script" uid="uid://b08jvgcswvib2" path="res://scenes/button.gd" id="1_mi6dp"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n4pas"]
+height = 0.32709962
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mi6dp"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rhj8v"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mi6dp"]
+height = 0.2013672
+
+[sub_resource type="BoxMesh" id="BoxMesh_3q610"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mi6dp"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Button" type="Node3D" unique_id=949718311 groups=["buttons"]]
+script = ExtResource("1_mi6dp")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1577649788]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=305046420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10935059, 0)
+shape = SubResource("CylinderShape3D_n4pas")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=1411606297]
+
+[node name="Button" type="MeshInstance3D" parent="AnimatableBody3D" unique_id=429949473]
+transform = Transform3D(1, 0, 0, 0, 0.099999964, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_mi6dp")
+mesh = SubResource("CylinderMesh_rhj8v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=1081154058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00068357587, 0)
+shape = SubResource("CylinderShape3D_mi6dp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=941207739]
+transform = Transform3D(1, 0, 0, 0, 0.099999964, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("BoxMesh_3q610")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1161041356]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=183175712]
+shape = SubResource("ConcavePolygonShape3D_mi6dp")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

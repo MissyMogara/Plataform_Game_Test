@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bhiwmuyo16iue" path="res://scenes/character.tscn" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://ci30d3tanuo71" path="res://scenes/level.gd" id="1_w8frs"]
 [ext_resource type="PackedScene" uid="uid://dstsef1h775fv" path="res://scenes/plaform_node.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://bu18lid064l1m" path="res://scenes/gate_door.tscn" id="4_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://scnnn4jvuvtm" path="res://scenes/button.tscn" id="5_2r41h"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -153,3 +155,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 38.8, 183.49998)
 offset = Vector3(0, 0, -34.85)
 duration = 10.0
 pause = 3.0
+
+[node name="Gate_Door" parent="." unique_id=1892966898 instance=ExtResource("4_ppgk2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5.9, 56.2)
+offset = Vector3(0, 3, 0)
+duration = 2.0
+id = 1
+
+[node name="Button" parent="." unique_id=949718311 instance=ExtResource("5_2r41h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8, 0.3, 48.4)
+door_id = 1
+offset = Vector3(0, -0.5, 0)
+duration = 0.5
