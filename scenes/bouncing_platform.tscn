@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://piefyoloiwmb"]
+
+[ext_resource type="Script" uid="uid://jrxs3mueoiv2" path="res://scripts/bouncing_platform.gd" id="1_0u4bf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymtc8"]
+albedo_color = Color(0.5349299, 0.9999997, 0.58347905, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_afgti"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cmdfk"]
+height = 0.25
+radius = 0.90000004
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0u4bf"]
+height = 0.14999998
+radius = 1.2
+
+[node name="Bouncing_platform" type="Node3D" unique_id=1287622240]
+script = ExtResource("1_0u4bf")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=690543857]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D" unique_id=1046307225]
+transform = Transform3D(2.47, 0, 0, 0, 0.099999964, 0, 0, 0, 2.431, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ymtc8")
+mesh = SubResource("CylinderMesh_afgti")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=1371394187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024999976, 0)
+shape = SubResource("CylinderShape3D_cmdfk")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1060695728]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=908508985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17500001, 0)
+shape = SubResource("CylinderShape3D_0u4bf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

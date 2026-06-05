@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://dstsef1h775fv" path="res://scenes/plaform_node.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bu18lid064l1m" path="res://scenes/gate_door.tscn" id="4_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://scnnn4jvuvtm" path="res://scenes/button.tscn" id="5_2r41h"]
+[ext_resource type="PackedScene" uid="uid://c4djts5sbaaoy" path="res://scenes/pause_menu.tscn" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://piefyoloiwmb" path="res://scenes/bouncing_platform.tscn" id="6_klq6b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -167,3 +169,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8, 0.3, 48.4)
 door_id = 1
 offset = Vector3(0, -0.5, 0)
 duration = 0.5
+
+[node name="Bouncing_platform" parent="." unique_id=1287622240 instance=ExtResource("6_klq6b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.7, 0.4, 63.5)
+bounce_force = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1201548141]
+process_mode = 3
+
+[node name="PauseMenu" parent="CanvasLayer" unique_id=1632612779 instance=ExtResource("6_2r41h")]

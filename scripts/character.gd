@@ -33,17 +33,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_camera_motion:
 		_camera_imput_direction = event.screen_relative * mouse_sensitivity
 
-
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
+	
 func _input(event):
-	#if event.is_action_pressed("esc"):
-		#get_tree().quit()
-	if event.is_action_pressed("left_click"):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	if event.is_action_pressed("esc"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	pass
 		
 func play_anim(anim: String) -> void:
 	if animation_player.current_animation != anim:
@@ -76,8 +70,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerpf(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerpf(velocity.z, 0.0, deceleration * delta)
 	
-	
-	
 	if is_on_floor():
 		was_on_floor = true
 	else:
@@ -108,7 +100,7 @@ func _physics_process(delta: float) -> void:
 		if velocity.y > 0:
 			play_anim("jump")
 		else:
-			play_anim("standing")
+			play_anim("jump")
 	elif velocity.length() > 0.1:
 		play_anim("walking")
 	else:
@@ -123,3 +115,6 @@ func CheckHeigh() -> void:
 
 func Death() -> void:
 	get_tree().reload_current_scene()
+	
+func bounce(force: float) -> void:
+	velocity.y += force
