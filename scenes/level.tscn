@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://scnnn4jvuvtm" path="res://scenes/button.tscn" id="5_2r41h"]
 [ext_resource type="PackedScene" uid="uid://c4djts5sbaaoy" path="res://scenes/pause_menu.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://piefyoloiwmb" path="res://scenes/bouncing_platform.tscn" id="6_klq6b"]
+[ext_resource type="Shader" uid="uid://c33pul87yfecm" path="res://scenes/water.tres" id="8_b121j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -24,6 +25,12 @@ glow_enabled = true
 [sub_resource type="SphereMesh" id="SphereMesh_2q6dc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ppgk2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b121j"]
+albedo_color = Color(1, 0.23529412, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c41q"]
+albedo_color = Color(1, 0.23529412, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2q6dc"]
 
@@ -48,6 +55,18 @@ glow_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_t1rx8"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8iemx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0u6y"]
+render_priority = 0
+shader = ExtResource("8_b121j")
+shader_parameter/ColorParameter = Color(0.2236, 0.57362, 0.86, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yf5fn"]
+size = Vector2(150, 300)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
 
 [node name="Level" type="Node3D" unique_id=1572995678]
 script = ExtResource("1_w8frs")
@@ -76,14 +95,16 @@ mesh = SubResource("SphereMesh_2q6dc")
 use_collision = true
 
 [node name="Floor" type="CSGMesh3D" parent="Terrain" unique_id=124201826]
-transform = Transform3D(50, 0, 0, 0, 0.4, 0, 0, 0, 50, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0)
 use_collision = true
 mesh = SubResource("BoxMesh_ppgk2")
+material = SubResource("StandardMaterial3D_b121j")
 
 [node name="Floor2" type="CSGMesh3D" parent="Terrain" unique_id=1989366656]
 transform = Transform3D(100, 0, 0, 0, 0.4, 0, 0, 0, 207.00002, 0, 0, 148.7)
 use_collision = true
 mesh = SubResource("BoxMesh_ppgk2")
+material = SubResource("StandardMaterial3D_8c41q")
 
 [node name="Door" type="CSGMesh3D" parent="Terrain" unique_id=1497452611]
 transform = Transform3D(21.168003, 0, 0, 0, 11.16, 0, 0, 0, 1, 1.5, 5.7095327, 56.3)
@@ -178,3 +199,12 @@ bounce_force = 40.0
 process_mode = 3
 
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1632612779 instance=ExtResource("6_2r41h")]
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=836966021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.400002, 2.6000009, 182.3)
+material_override = SubResource("ShaderMaterial_d0u6y")
+mesh = SubResource("PlaneMesh_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=882126476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, 34)
+mesh = SubResource("SphereMesh_g4v7s")
