@@ -13,6 +13,8 @@ extends CharacterBody3D
 @export var deceleration := 8.0
 @export var rotation_speed := 12.0
 @export var jump_impulse := 12.0
+@export var sprint_speed := 15.0
+@export var walk_speed:= 8.0
 
 @onready var _camera_pivot: Node3D = %Pivot
 @onready var _camera: Camera3D = %Camera3D
@@ -85,6 +87,12 @@ func _physics_process(delta: float) -> void:
 	var is_starting_jump: bool = Input.is_action_just_pressed("space_bar") and ((is_on_floor() or !coyote_timer.is_stopped()) or grapple_controller.launched)
 	if is_starting_jump:
 		velocity.y +=  jump_impulse
+		
+	var is_sprinting: bool = Input.is_action_pressed("sprint")
+	if is_sprinting and is_on_floor():
+		move_speed = sprint_speed
+	else:
+		move_speed = walk_speed
 		
 	if not is_on_floor():
 		CheckHeigh()

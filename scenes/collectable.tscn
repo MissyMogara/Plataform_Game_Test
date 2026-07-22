@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://d2186vm3jr08m"]
+
+[ext_resource type="Script" uid="uid://eevrwdpaqmlt" path="res://scripts/collectable.gd" id="1_ti8a4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[node name="Collectable" type="Node3D" unique_id=123628370]
+script = ExtResource("1_ti8a4")
+
+[node name="CollectableArea" type="Area3D" parent="." unique_id=919459072]
+
+[node name="CollisionShape" type="CollisionShape3D" parent="CollectableArea" unique_id=893831145]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="CollectableMesh" type="MeshInstance3D" parent="." unique_id=224105132]
+mesh = SubResource("SphereMesh_g4v7s")
+
+[connection signal="body_entered" from="CollectableArea" to="." method="_on_collectable_area_body_entered"]
