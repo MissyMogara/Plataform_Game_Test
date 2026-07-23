@@ -14,12 +14,8 @@ func _ready() -> void:
 	collectable_mesh.mesh = model
 	collectable_shape.shape = shape
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_collectable_area_body_entered(body: Node3D) -> void:
 	if (body is CharacterBody3D):
+		if (self.collectable_name == "quesadilla"):
+			GameManager.add_quesadilla(1)
 		queue_free()

@@ -20,6 +20,7 @@ extends CharacterBody3D
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Miqotilla
 @onready var coyote_timer: Timer = $CoyoteTimer
+@onready var jump_timer: Timer = $JumpTimer
 
 var _camera_imput_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
@@ -84,8 +85,11 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		velocity.y = y_velocity + _gravity * delta
 	
+	
+	
 	var is_starting_jump: bool = Input.is_action_just_pressed("space_bar") and ((is_on_floor() or !coyote_timer.is_stopped()) or grapple_controller.launched)
-	if is_starting_jump:
+	if is_starting_jump and jump_timer.is_stopped():
+		jump_timer.start()
 		velocity.y +=  jump_impulse
 		
 	var is_sprinting: bool = Input.is_action_pressed("sprint")

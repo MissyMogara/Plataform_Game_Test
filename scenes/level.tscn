@@ -9,7 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://piefyoloiwmb" path="res://scenes/bouncing_platform.tscn" id="6_klq6b"]
 [ext_resource type="Shader" uid="uid://c33pul87yfecm" path="res://scenes/water.tres" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://d2186vm3jr08m" path="res://scenes/collectable.tscn" id="9_olg7q"]
+[ext_resource type="PackedScene" uid="uid://c4e4vhputq7hx" path="res://scenes/videogame_ui.tscn" id="10_8iemx"]
 [ext_resource type="CylinderMesh" uid="uid://r4y6irh736tf" path="res://assets/collectables/new_cylinder_mesh.tres" id="10_t1rx8"]
+[ext_resource type="Script" uid="uid://6ey8umn2a7y3" path="res://scripts/videogame_ui.gd" id="11_8iemx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w7c3h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -202,7 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.700001, -2.0999994, 102)
 material_override = SubResource("ShaderMaterial_d0u6y")
 mesh = SubResource("PlaneMesh_yf5fn")
 
-[node name="Collectable" parent="." unique_id=123628370 instance=ExtResource("9_olg7q")]
+[node name="Collectable" parent="." unique_id=910560970 instance=ExtResource("9_olg7q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.9, 18.6)
 collectable_name = "quesadilla"
 model = ExtResource("10_t1rx8")
@@ -211,4 +213,9 @@ shape = SubResource("SphereShape3D_8iemx")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1201548141]
 process_mode = 3
 
+[node name="Videogame_UI" parent="CanvasLayer" unique_id=655674544 instance=ExtResource("10_8iemx")]
+script = ExtResource("11_8iemx")
+
 [node name="PauseMenu" parent="CanvasLayer" unique_id=1632612779 instance=ExtResource("6_2r41h")]
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]

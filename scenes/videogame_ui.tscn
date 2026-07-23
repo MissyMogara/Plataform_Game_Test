@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c4e4vhputq7hx"]
 
+[ext_resource type="Texture2D" uid="uid://iou2d2cj161h" path="res://assets/UI/Quesadillas-vegetarianas.png" id="1_05wvn"]
+
 [node name="Videogame_UI" type="Control" unique_id=655674544]
 layout_mode = 3
 anchors_preset = 15
@@ -7,8 +9,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=333712744]
 layout_mode = 0
 offset_right = 325.0
 offset_bottom = 54.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=269148242]
+layout_mode = 2
+texture = ExtResource("1_05wvn")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1422599947]
+layout_mode = 2
+text = "0"

@@ -508,5 +508,9 @@ script = ExtResource("8_a5ia6")
 wait_time = 0.15
 one_shot = true
 
+[node name="JumpTimer" type="Timer" parent="." unique_id=1246549163]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="GrapplingHookArea" to="GrappleController" method="_on_body_entered"]
 [connection signal="body_exited" from="GrapplingHookArea" to="GrappleController" method="_on_body_exited"]
