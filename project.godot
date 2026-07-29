@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Camera and movement"
+run/main_scene="uid://djtafpqcjk30v"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -28,6 +29,8 @@ window/stretch/mode="canvas_items"
 hookable="Hookable objects"
 doors="doors to be opened"
 buttons="buttons to be pressed"
+player="CharacterBody3D"
+level_elements="Level elements that I want save into savefile"
 
 [input]
 

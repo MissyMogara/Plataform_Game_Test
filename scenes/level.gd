@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var platform1: Platform_Node 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for button in get_tree().get_nodes_in_group("buttons"):

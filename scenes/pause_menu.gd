@@ -4,12 +4,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	visible = false
+	if !Engine.is_editor_hint():
+		visible = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc") and get_tree().paused == false:
 		_pause()
@@ -51,3 +48,11 @@ func _on_main_menu_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_save_button_down() -> void:
+	GameManager.save_game()
+
+
+func _on_load_button_down() -> void:
+	GameManager.load_game()

@@ -13,10 +13,6 @@ func _ready() -> void:
 	start_position = animatablebody.position
 	start_tween()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func start_tween():
 	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops().set_parallel(false)

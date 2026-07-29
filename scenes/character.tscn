@@ -177,7 +177,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_2cgup"]
 radius = 8.0
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1672272667]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1672272667 groups=["player"]]
 script = ExtResource("1_agfs1")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=36376997]

@@ -2,20 +2,49 @@ extends Node3D
 
 # Properties
 @export var collectable_name: String = "default"
-@export var model: Mesh
+@export var collectable_scene: PackedScene
 @export var shape: Shape3D
+@export var animation: bool = false
+#If there is an animation
+@export var offset: Vector3 = Vector3.ZERO
+@export var duration: float = 0
 
 # Default properties
-@onready var collectable_mesh:= $CollectableMesh
 @onready var collectable_shape:= $CollectableArea/CollisionShape
+@onready var model: Node3D = $Model
+@onready var place_holder: MeshInstance3D = $MeshInstance3D
+var model_start_position = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	collectable_mesh.mesh = model
+	if collectable_scene:
+		place_holder.visible = false
+	model_start_position = model.position
+	
+	if (collectable_scene):
+		var collectable: Node = collectable_scene.instantiate()
+		model.add_child(collectable)
+		
+		for mesh in collectable.get_children():
+			if mesh is MeshInstance3D:
+				print("Mesh: ", mesh.name)
+		
 	collectable_shape.shape = shape
+	if animation:
+		start_vertical_tween()
+
+func _physics_process(delta: float) -> void:
+	if animation:
+		model.rotate_y(1.5 * delta)
 
 func _on_collectable_area_body_entered(body: Node3D) -> void:
 	if (body is CharacterBody3D):
 		if (self.collectable_name == "quesadilla"):
 			GameManager.add_quesadilla(1)
 		queue_free()
+		
+func start_vertical_tween():
+	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_loops().set_parallel(false)
+	tween.tween_property(model, "position", offset, duration).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(model, "position", model_start_position, duration).set_trans(Tween.TRANS_SINE)

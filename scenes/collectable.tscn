@@ -5,7 +5,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 0.8
 
-[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
 
 [node name="Collectable" type="Node3D" unique_id=123628370]
 script = ExtResource("1_ti8a4")
@@ -13,9 +13,12 @@ script = ExtResource("1_ti8a4")
 [node name="CollectableArea" type="Area3D" parent="." unique_id=919459072]
 
 [node name="CollisionShape" type="CollisionShape3D" parent="CollectableArea" unique_id=893831145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("SphereShape3D_g4v7s")
 
-[node name="CollectableMesh" type="MeshInstance3D" parent="." unique_id=224105132]
-mesh = SubResource("SphereMesh_g4v7s")
+[node name="Model" type="Node3D" parent="." unique_id=645594131]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1538703492]
+mesh = SubResource("SphereMesh_yf5fn")
 
 [connection signal="body_entered" from="CollectableArea" to="." method="_on_collectable_area_body_entered"]
