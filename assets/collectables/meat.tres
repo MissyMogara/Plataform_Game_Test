@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://betxgawvxncoo"]
+
+[resource]
+resource_name = "meat"
+cull_mode = 2
+albedo_color = Color(0.90588254, 0.55294126, 0.17254905, 1)

@@ -35,3 +35,7 @@ func load_game():
 func add_quesadilla(amount: int):
 	quesadillas += amount
 	quesadillas_changed.emit(quesadillas)
+	
+func reset_quesadillas():
+	quesadillas = 0
+	quesadillas_changed.emit(quesadillas)

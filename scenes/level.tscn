@@ -87,7 +87,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.591351, 0)
 
 [node name="Hook_Point1" type="CSGMesh3D" parent="." unique_id=1704194650 groups=["hookable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46974707, 6.46679, 34.421154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.030252934, 6.46679, 34.421154)
 use_collision = true
 mesh = SubResource("SphereMesh_2q6dc")
 
@@ -205,8 +205,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.700001, -2.0999994, 102)
 material_override = SubResource("ShaderMaterial_d0u6y")
 mesh = SubResource("PlaneMesh_yf5fn")
 
-[node name="Collectable" parent="." unique_id=910560970 instance=ExtResource("9_olg7q")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.5, 0.39999986, 18.6)
+[node name="Collectables" type="Node3D" parent="." unique_id=963498467]
+
+[node name="Collectable_Quesadilla2" parent="Collectables" unique_id=123628370 instance=ExtResource("9_olg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4999995, 39.8)
+collectable_name = "quesadilla"
+collectable_scene = ExtResource("9_8iemx")
+shape = SubResource("SphereShape3D_8iemx")
+animation = true
+offset = Vector3(0, 1, 0)
+duration = 2.0
+
+[node name="Collectable_Quesadilla" parent="Collectables" unique_id=910560970 instance=ExtResource("9_olg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 51.7)
+collectable_name = "quesadilla"
+collectable_scene = ExtResource("9_8iemx")
+shape = SubResource("SphereShape3D_8iemx")
+animation = true
+offset = Vector3(0, 1, 0)
+duration = 2.0
+
+[node name="Collectable_Quesadilla3" parent="Collectables" unique_id=1386499817 instance=ExtResource("9_olg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, 44.000004)
 collectable_name = "quesadilla"
 collectable_scene = ExtResource("9_8iemx")
 shape = SubResource("SphereShape3D_8iemx")

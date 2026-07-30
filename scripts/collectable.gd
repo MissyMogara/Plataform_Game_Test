@@ -32,7 +32,6 @@ func _ready() -> void:
 			if mesh is MeshInstance3D:
 				for i in mesh.get_surface_override_material_count(): #All material
 					var material = mesh.get_active_material(i)
-					print(material.resource_name)
 					material.diffuse_mode = BaseMaterial3D.DIFFUSE_TOON
 					material.specular_mode = BaseMaterial3D.SPECULAR_DISABLED
 					material.roughness = 0

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://blwf3hmefvxgc"]
+
+[ext_resource type="Texture2D" uid="uid://q1trinmhvcja" path="res://assets/collectables/quesadillas_quesadilla-texture.png" id="1_i1gel"]
+
+[resource]
+resource_name = "base"
+cull_mode = 2
+albedo_texture = ExtResource("1_i1gel")
+metadata/_gltf_primary_texture_coord = 0
