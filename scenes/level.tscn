@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c4djts5sbaaoy" path="res://scenes/pause_menu.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://piefyoloiwmb" path="res://scenes/bouncing_platform.tscn" id="6_klq6b"]
 [ext_resource type="Shader" uid="uid://c33pul87yfecm" path="res://scenes/water.tres" id="8_b121j"]
-[ext_resource type="PackedScene" uid="uid://kp50x2gibwso" path="res://assets/collectables/quesadilla.glb" id="9_8iemx"]
+[ext_resource type="PackedScene" uid="uid://cl21pfv6ermt0" path="res://assets/collectables/quesadillas.glb" id="9_8iemx"]
 [ext_resource type="PackedScene" uid="uid://d2186vm3jr08m" path="res://scenes/collectable.tscn" id="9_olg7q"]
 [ext_resource type="PackedScene" uid="uid://c4e4vhputq7hx" path="res://scenes/videogame_ui.tscn" id="10_8iemx"]
 [ext_resource type="Script" uid="uid://6ey8umn2a7y3" path="res://scripts/videogame_ui.gd" id="11_8iemx"]
