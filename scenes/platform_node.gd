@@ -7,6 +7,7 @@ class_name Platform_Node
 @export var duration: float
 @export var pause: float
 var start_position: Vector3
+var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,7 +15,7 @@ func _ready() -> void:
 	start_tween()
 
 func start_tween():
-	var tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween = get_tree().create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_loops().set_parallel(false)
 	tween.tween_property(animatablebody, "position", offset, duration).set_trans(Tween.TRANS_SINE).set_delay(pause)
 	tween.tween_property(animatablebody, "position", start_position, duration).set_trans(Tween.TRANS_SINE).set_delay(pause)

@@ -7,7 +7,7 @@ size = Vector3(3.8, 1, 3.8)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k0kfp"]
 
-[node name="Plaform_Node" type="Node3D" unique_id=584601201]
+[node name="Plaform_Node" type="Node3D" unique_id=584601201 groups=["platform"]]
 script = ExtResource("1_k0kfp")
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=1887290831]
@@ -19,3 +19,5 @@ shape = SubResource("BoxShape3D_m86qc")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D" unique_id=1997461474]
 transform = Transform3D(3.78, 0, 0, 0, 1, 0, 0, 0, 3.78, 0, 0, 0)
 mesh = SubResource("BoxMesh_k0kfp")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]

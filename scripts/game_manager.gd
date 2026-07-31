@@ -39,3 +39,7 @@ func add_quesadilla(amount: int):
 func reset_quesadillas():
 	quesadillas = 0
 	quesadillas_changed.emit(quesadillas)
+	
+func kill_all_tweens():
+	for tween in get_tree().get_processed_tweens():
+		tween.kill()

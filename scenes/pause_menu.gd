@@ -38,12 +38,14 @@ func _on_options_pressed() -> void:
 
 func _on_restart_level_pressed() -> void:
 	get_tree().paused = false
+	GameManager.kill_all_tweens()
 	get_tree().reload_current_scene()
 	GameManager.reset_quesadillas()
 
 
 func _on_main_menu_pressed() -> void:
 	get_tree().paused = false
+	GameManager.kill_all_tweens()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 

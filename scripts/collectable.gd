@@ -20,6 +20,7 @@ var toon_styler : ToonStyle = ToonStyle.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	if collectable_scene:
 		place_holder.visible = false
 	model_start_position = model.position
@@ -50,8 +51,7 @@ func _on_collectable_area_body_entered(body: Node3D) -> void:
 	if (body is CharacterBody3D):
 		if (self.collectable_name == "quesadilla"):
 			GameManager.add_quesadilla(1)
-		if tween:
-			tween.kill()
+		kill_tween()
 		queue_free()
 		
 func start_vertical_tween():
@@ -59,3 +59,8 @@ func start_vertical_tween():
 	tween.set_loops().set_parallel(false)
 	tween.tween_property(model, "position", offset, duration).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(model, "position", model_start_position, duration).set_trans(Tween.TRANS_SINE)
+	
+func kill_tween():
+	if tween:
+		tween.kill()
+	

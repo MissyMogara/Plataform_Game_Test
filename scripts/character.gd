@@ -126,7 +126,11 @@ func CheckHeigh() -> void:
 		Death()
 
 func Death() -> void:
-	get_tree().reload_current_scene()
+	GameManager.kill_all_tweens()
+	call_deferred("reload_scene")
 	
 func bounce(force: float) -> void:
 	velocity.y += force
+	
+func reload_scene():
+	get_tree().reload_current_scene()

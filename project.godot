@@ -31,6 +31,7 @@ doors="doors to be opened"
 buttons="buttons to be pressed"
 player="CharacterBody3D"
 level_elements="Level elements that I want save into savefile"
+platform="Dimanic platforms"
 
 [input]
 
