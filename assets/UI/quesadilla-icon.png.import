@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iou2d2cj161h"
-path="res://.godot/imported/Quesadillas-vegetarianas.png-9aee3ef0badad821f3233e77d74d3035.ctex"
+uid="uid://pprsarn6an1i"
+path="res://.godot/imported/quesadilla-icon.png-579cc56b26d16dd92bffd7d6290538ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Quesadillas-vegetarianas.png"
-dest_files=["res://.godot/imported/Quesadillas-vegetarianas.png-9aee3ef0badad821f3233e77d74d3035.ctex"]
+source_file="res://assets/UI/quesadilla-icon.png"
+dest_files=["res://.godot/imported/quesadilla-icon.png-579cc56b26d16dd92bffd7d6290538ec.ctex"]
 
 [params]
 
