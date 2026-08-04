@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://scnnn4jvuvtm" path="res://scenes/button.tscn" id="5_2r41h"]
 [ext_resource type="PackedScene" uid="uid://c4djts5sbaaoy" path="res://scenes/pause_menu.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://piefyoloiwmb" path="res://scenes/bouncing_platform.tscn" id="6_klq6b"]
+[ext_resource type="PackedScene" uid="uid://di0g0muqyt7md" path="res://scenes/under_water_effect.tscn" id="8_64w2a"]
 [ext_resource type="Shader" uid="uid://c33pul87yfecm" path="res://scenes/water.tres" id="8_b121j"]
 [ext_resource type="PackedScene" uid="uid://cl21pfv6ermt0" path="res://assets/collectables/quesadillas.glb" id="9_8iemx"]
 [ext_resource type="PackedScene" uid="uid://d2186vm3jr08m" path="res://scenes/collectable.tscn" id="9_olg7q"]
@@ -24,7 +25,13 @@ sky_material = SubResource("ProceduralSkyMaterial_w7c3h")
 background_mode = 2
 sky = SubResource("Sky_w8frs")
 tonemap_mode = 2
-glow_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.36862746, 0.52156866, 0.9411765, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 20.0
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(0.04338205, 0.49844122, 0.92135197, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2q6dc"]
 
@@ -69,6 +76,25 @@ shader_parameter/ColorParameter = Color(0.2236, 0.57362, 0.86, 1)
 size = Vector2(150, 300)
 subdivide_width = 20
 subdivide_depth = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+render_priority = 0
+shader = ExtResource("8_b121j")
+shader_parameter/ColorParameter = Color(0.2236, 0.57362, 0.86, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(165.2, 83.200005, 339.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(6.2000003, 3.2, 6.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+size = Vector3(7.1, 1, 7.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8iemx"]
 radius = 0.4
@@ -204,6 +230,28 @@ bounce_force = 40.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.700001, -2.0999994, 102)
 material_override = SubResource("ShaderMaterial_d0u6y")
 mesh = SubResource("PlaneMesh_yf5fn")
+
+[node name="Water2" type="MeshInstance3D" parent="." unique_id=13823128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5000007, 4.2000003, 15.9000025)
+material_override = SubResource("ShaderMaterial_yf5fn")
+mesh = SubResource("PlaneMesh_g4v7s")
+
+[node name="UnderWaterEffect" parent="." unique_id=1657362093 instance=ExtResource("8_64w2a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.7, 42.6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnderWaterEffect" unique_id=859799304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8999958, -34.100002, 37.30001)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="UnderWaterEffect2" parent="." unique_id=40881299 instance=ExtResource("8_64w2a")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnderWaterEffect2" unique_id=403969563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6000001, 2.4999995, 15.1500025)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UnderWaterEffect2" unique_id=1814948149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0, 15.449999)
+mesh = SubResource("BoxMesh_yf5fn")
 
 [node name="Collectables" type="Node3D" parent="." unique_id=963498467]
 

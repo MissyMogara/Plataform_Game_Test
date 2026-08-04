@@ -12,6 +12,8 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lw5n"]
 radius = 0.2
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_my7n2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q7476"]
@@ -192,6 +194,12 @@ spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="Pivot/SpringArm3D" unique_id=1052887147]
 unique_name_in_owner = true
+
+[node name="CameraRig" type="Area3D" parent="Pivot/SpringArm3D/Camera3D" unique_id=382442329]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/SpringArm3D/Camera3D/CameraRig" unique_id=1698983424]
+shape = SubResource("SphereShape3D_57qmd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=29277896]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9733175, 0)

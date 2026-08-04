@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://di0g0muqyt7md"]
+
+[ext_resource type="Script" uid="uid://ckfe0ql645li3" path="res://scripts/under_water_effect.gd" id="1_isoij"]
+
+[node name="UnderWaterEffect" type="Area3D" unique_id=1657362093]
+script = ExtResource("1_isoij")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

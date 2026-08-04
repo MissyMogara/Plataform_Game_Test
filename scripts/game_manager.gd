@@ -5,6 +5,10 @@ signal quesadillas_changed()
 #Player Info
 var quesadillas : int = 0
 
+#Enviroment
+var worldEnviroment : WorldEnvironment
+var enviroment : Environment
+
 func save_game():
 	var data = SaveData.new()
 	#Save Player position
@@ -43,3 +47,27 @@ func reset_quesadillas():
 func kill_all_tweens():
 	for tween in get_tree().get_processed_tweens():
 		tween.kill()
+
+#region functions to set an get enviroment
+func set_world_enviroment():
+	worldEnviroment = get_tree().current_scene.get_node("WorldEnvironment")
+
+func get_enviroment_element():
+	enviroment = worldEnviroment.get_environment()
+#endregion
+	
+#Underwater Effect
+func switch_underwater_effect():
+	print("1")
+	if (!enviroment):
+		set_world_enviroment()
+		get_enviroment_element()
+	if (enviroment):
+		if (!enviroment.fog_enabled):
+			enviroment.fog_enabled = true
+			enviroment.fog_density = 0.5
+			enviroment.background_color = Color(94,133,240,1.0)
+		else:
+			enviroment.fog_density = 0
+			enviroment.fog_enabled = false
+		
