@@ -118,9 +118,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		play_anim("standing")
 	
-	
-	
-	
 func CheckHeigh() -> void:
 	if global_position.y < -16.0:
 		Death()
