@@ -1,6 +1,4 @@
-extends Node3D
-
-class_name HookGun
+class_name HookGun extends Node3D
 
 @onready var rope: RopeNode = $Grappling_Hook/Rope
 

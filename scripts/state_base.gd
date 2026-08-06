@@ -1,8 +1,8 @@
 class_name StateBase extends Node
 
-@onready var controlled_node : Node = self.owner
+@onready var controlled_node:Node = self.owner
 
-var stateMachine : StateMachine
+var state_machine:StateMachine
 
 #region shared methods
 

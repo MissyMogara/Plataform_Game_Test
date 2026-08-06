@@ -14,8 +14,6 @@
 [ext_resource type="Script" uid="uid://cb8y2u42rsnd5" path="res://scripts/player/player_state_jump.gd" id="12_7eonc"]
 [ext_resource type="Script" uid="uid://fjtx6onurlrr" path="res://scripts/player/player_state_fall.gd" id="13_50cep"]
 [ext_resource type="Script" uid="uid://cyswf8r7jvqfh" path="res://scripts/player/player_state_run.gd" id="14_8yvht"]
-[ext_resource type="Script" uid="uid://bsvv6qco3py1j" path="res://scripts/player/player_state_movement_and_gravity.gd" id="15_lagn4"]
-[ext_resource type="Script" uid="uid://cbxrlfek4fbd3" path="res://scripts/player/player_state_coyote.gd" id="16_x8k1v"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lw5n"]
 radius = 0.2
@@ -545,18 +543,19 @@ script = ExtResource("12_7eonc")
 
 [node name="PlayerStateFall" type="Node" parent="StateMachine" unique_id=1964860090]
 script = ExtResource("13_50cep")
+aerial_speed = null
+aerial_acceleration = null
+front_aerial_speed = null
+front_aerial_acceleration = null
+gravity = null
 
 [node name="PlayerStateRun" type="Node" parent="StateMachine" unique_id=258591193]
 script = ExtResource("14_8yvht")
+acceleration = null
+sprint_speed = null
+gravity = null
 
 [node name="PlayerStateGrapplingHook" type="Node" parent="StateMachine" unique_id=1845063853]
 
-[node name="PlayerStateMovementAndGravity" type="Node" parent="StateMachine" unique_id=391826316]
-script = ExtResource("15_lagn4")
-
-[node name="PlayerStateCoyote" type="Node" parent="StateMachine" unique_id=1729496762]
-script = ExtResource("16_x8k1v")
-
 [connection signal="body_entered" from="GrapplingHookArea" to="GrappleController" method="_on_body_entered"]
 [connection signal="body_exited" from="GrapplingHookArea" to="GrappleController" method="_on_body_exited"]
-[connection signal="timeout" from="CoyoteTimer" to="StateMachine/PlayerStateCoyote" method="_on_coyote_timer_timeout"]

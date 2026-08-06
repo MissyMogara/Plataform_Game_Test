@@ -1,14 +1,22 @@
-extends StateBase
-
-var gravity := -30.0
-
+extends PlayerMovementAndGravity
+	
 func on_physics_process(delta):
-	pass
-	#controlled_node.play_anim("standing")
-	#controlled_node.velocity.y = 0
+	player.play_anim("standing")
 	
-	#handle_gravity(delta)
-	#controlled_node.move_and_slide()
+	player.velocity.x = lerpf(player.velocity.x, 0.0, deceleration * delta)
+	player.velocity.z = lerpf(player.velocity.z, 0.0, deceleration * delta)
 	
-func handle_gravity(delta):
-	controlled_node.velocity.y += gravity * delta
+	handle_gravity(delta)
+	player.move_and_slide()
+	
+func on_input(event):
+	var raw_input:Vector2 = get_raw_input()
+	
+	if Input.is_action_just_pressed("space_bar"):
+		state_machine.change_to(player.states.Jumping)
+		
+	if Input.is_action_just_pressed("sprint") and raw_input:
+		state_machine.change_to(player.states.Running)
+	
+	if raw_input:
+		state_machine.change_to(player.states.Walking)
