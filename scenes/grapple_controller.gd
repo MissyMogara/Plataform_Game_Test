@@ -1,18 +1,18 @@
 extends Node
 
-@onready var grappling_hook: HookGun = $"../Miqotilla/Armature/Skeleton3D/BoneAttachment3D/Grappling_Hook_Gadget"
+@onready var grappling_hook:HookGun = %Hand.get_child(0)
 
 @export var rest_length = 2.0
 @export var stiffness = 10.0
 @export var damping = 1.0
 
-var launched := false
-var available := false
-var hook_done := false
+var launched:bool = false
+var available:bool= false
+var hook_done:bool= false
 var target: Vector3
 var target_collision: Dictionary
 # We need character's space to shoot a raycast
-@onready var player: CharacterBody3D = get_parent()
+@onready var player: CharacterBody3D = self.owner
 @onready var direct_state = player.get_world_3d().direct_space_state
 @onready var char_origin = player.transform.origin
 

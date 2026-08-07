@@ -1,10 +1,18 @@
-class_name HookGun extends Node3D
+class_name GrapplingHook extends Gadget
 
-@onready var rope:Node = %Rope
-@onready var hook:Node = %Hook
+var rope:Node
+var hook:Node
+var hand_gadget:Node
 
+func _init() -> void:
+	item_name = "GrapplingHook"
+	item_type = ItemTypes.Gadget
+	
 func _ready() -> void:
 	hide_rope()
+	
+func set_item_node(node:Node) -> void:
+	item_node = node
 
 func unhide_rope() -> void:
 	rope.visible = true
@@ -17,7 +25,7 @@ func look_at_and_scale(target: Vector3, distance: float):
 	
 func scale_rope(target: Vector3) -> void:
 	
-	var start = global_position
+	var start = hand_gadget.global_position
 	var dir = target - start
 	var distance = dir.length()
 	

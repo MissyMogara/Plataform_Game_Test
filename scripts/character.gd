@@ -1,8 +1,7 @@
 class_name Player extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $Miqotilla/AnimationPlayer
-@onready var miqotilla: Node3D = $Miqotilla
-@onready var grapple_controller := $GrappleController
+@onready var miqotilla: Node3D = %Miqotilla
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity := 0.1
@@ -10,11 +9,17 @@ class_name Player extends CharacterBody3D
 @onready var _camera_pivot: Node3D = %Pivot
 @onready var _camera: Camera3D = %Camera3D
 @onready var _skin: Node3D = %Miqotilla
+@onready var hand:Hand = %Hand
 
 var _camera_imput_direction := Vector2.ZERO
 var _last_movement_direction := Vector3.BACK
 var states:PlayerStatesNames = PlayerStatesNames.new()
 
+func get_player_hand() -> Hand:
+	return hand
+	
+func set_item_into_hand(item:Node) -> void:
+	hand.change_item(item)
 # This prevent player for moving camera outside the game
 func _unhandled_input(event: InputEvent) -> void:
 	var is_camera_motion := (

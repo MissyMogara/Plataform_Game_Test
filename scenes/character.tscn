@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ptjvwuaq3rf" path="res://textures/Miqotilla_Texture.png" id="3_0lw5n"]
 [ext_resource type="Animation" uid="uid://irnvjfmnff8s" path="res://anims/jump.tres" id="4_2cgup"]
 [ext_resource type="PackedScene" uid="uid://cggh70b8hs0ly" path="res://scenes/grappling_hook.tscn" id="4_a5ia6"]
+[ext_resource type="Script" uid="uid://5ftv3eqnqevu" path="res://scripts/player/player_hand.gd" id="4_vovfy"]
 [ext_resource type="Animation" uid="uid://bd8xi1uehj0g5" path="res://anims/standing.tres" id="5_a5ia6"]
 [ext_resource type="Animation" uid="uid://c0yqdv16b7inp" path="res://anims/walking.tres" id="6_0dpix"]
 [ext_resource type="Script" uid="uid://cjnquhpisofl0" path="res://scenes/grapple_controller.gd" id="8_a5ia6"]
@@ -14,8 +15,10 @@
 [ext_resource type="Script" uid="uid://cb8y2u42rsnd5" path="res://scripts/player/player_state_jump.gd" id="12_7eonc"]
 [ext_resource type="Script" uid="uid://fjtx6onurlrr" path="res://scripts/player/player_state_fall.gd" id="13_50cep"]
 [ext_resource type="Script" uid="uid://cyswf8r7jvqfh" path="res://scripts/player/player_state_run.gd" id="14_8yvht"]
+[ext_resource type="Script" uid="uid://clexrnvqy5v1q" path="res://scripts/player/player_state_grappling_hook.gd" id="15_ih8y6"]
 [ext_resource type="Script" uid="uid://bsvv6qco3py1j" path="res://scripts/player/player_state_movement_and_gravity.gd" id="15_lagn4"]
 [ext_resource type="Script" uid="uid://cbxrlfek4fbd3" path="res://scripts/player/player_state_coyote.gd" id="16_x8k1v"]
+[ext_resource type="Script" uid="uid://bn6410fr6gusx" path="res://scripts/items/item_controller.gd" id="17_rbud2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0lw5n"]
 radius = 0.2
@@ -500,12 +503,14 @@ skin = SubResource("Skin_e2qai")
 skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_a5ia6")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Miqotilla/Armature/Skeleton3D" unique_id=1556654837]
+[node name="Hand" type="BoneAttachment3D" parent="Miqotilla/Armature/Skeleton3D" unique_id=1556654837]
+unique_name_in_owner = true
 transform = Transform3D(-0.82543784, -0.56449294, -2.1219759e-07, 0.5644929, -0.8254378, 4.3464272e-08, -1.9969121e-07, -8.3907e-08, 0.99999994, -3.344607, 5.120743, 5.168458e-07)
 bone_name = "Arm.002.R"
 bone_idx = 8
+script = ExtResource("4_vovfy")
 
-[node name="Grappling_Hook_Gadget" parent="Miqotilla/Armature/Skeleton3D/BoneAttachment3D" unique_id=1373964838 instance=ExtResource("4_a5ia6")]
+[node name="Grappling_Hook_Gadget" parent="Miqotilla/Armature/Skeleton3D/Hand" unique_id=1373964838 instance=ExtResource("4_a5ia6")]
 transform = Transform3D(0.13645847, 0.9820801, -0.12998639, -0.98953646, 0.14133471, 0.029010545, 0.046862002, 0.12466768, 0.9910905, 2.275898, 1.5355363, 0.46322384)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Miqotilla" unique_id=1912475222]
@@ -516,9 +521,6 @@ playback_default_blend_time = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GrapplingHookArea" unique_id=77356009]
 shape = SubResource("SphereShape3D_2cgup")
-
-[node name="GrappleController" type="Node" parent="." unique_id=1628700968]
-script = ExtResource("8_a5ia6")
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=167045373]
 unique_name_in_owner = true
@@ -550,6 +552,7 @@ script = ExtResource("13_50cep")
 script = ExtResource("14_8yvht")
 
 [node name="PlayerStateGrapplingHook" type="Node" parent="StateMachine" unique_id=1845063853]
+script = ExtResource("15_ih8y6")
 
 [node name="PlayerStateMovementAndGravity" type="Node" parent="StateMachine" unique_id=391826316]
 script = ExtResource("15_lagn4")
@@ -557,6 +560,15 @@ script = ExtResource("15_lagn4")
 [node name="PlayerStateCoyote" type="Node" parent="StateMachine" unique_id=1729496762]
 script = ExtResource("16_x8k1v")
 
-[connection signal="body_entered" from="GrapplingHookArea" to="GrappleController" method="_on_body_entered"]
-[connection signal="body_exited" from="GrapplingHookArea" to="GrappleController" method="_on_body_exited"]
+[node name="ItemController" type="Node" parent="." unique_id=25342023]
+script = ExtResource("17_rbud2")
+
+[node name="GrappleController" type="Node" parent="ItemController" unique_id=1628700968]
+script = ExtResource("8_a5ia6")
+
+[connection signal="body_entered" from="GrapplingHookArea" to="ItemController/GrappleController" method="_on_body_entered"]
+[connection signal="body_exited" from="GrapplingHookArea" to="ItemController/GrappleController" method="_on_body_exited"]
 [connection signal="timeout" from="CoyoteTimer" to="StateMachine/PlayerStateCoyote" method="_on_coyote_timer_timeout"]
+
+[editable path="Miqotilla/Armature/Skeleton3D/Hand/Grappling_Hook_Gadget"]
+[editable path="Miqotilla/Armature/Skeleton3D/Hand/Grappling_Hook_Gadget/Grappling_Hook/Rope"]
